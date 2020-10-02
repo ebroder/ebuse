@@ -58,7 +58,9 @@ Connected /dev/nbd1
 ...and voila! You now have a block device (`/dev/nbd1` in this case) backed by
 an EBS snapshot. Note that if you want to mount the block device, you'll need to
 pass `-o ro` to `mount`; otherwise it will try and fail to update the
-superblock.
+superblock. And if your EBS volume has a partition table, you should
+automatically get partition-specific block devices (e.g. `/dev/nbd1p1`) - you'll
+need to mount those instead.
 
 To disconnect, run
 
