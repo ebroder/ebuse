@@ -10,6 +10,7 @@ import (
 	"time"
 	"unsafe"
 
+	"github.com/abligh/gonbdserver/nbd"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ebs"
 	lru "github.com/hashicorp/golang-lru"
@@ -44,7 +45,7 @@ type blockData struct {
 
 // NewSnapshotBackend creates a new SnapshotBackend and initializes the internal
 // cache of block data. Callers must call Close or this will leak a goroutine.
-func NewSnapshotBackend(initCtx context.Context, client *ebs.EBS, snapshot string) (*SnapshotBackend, error) {
+func NewSnapshotBackend(initCtx context.Context, client *ebs.EBS, snapshot string) (nbd.Backend, error) {
 	blockCache, err := lru.NewARC(100)
 	if err != nil {
 		panic(err)
