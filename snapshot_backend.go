@@ -141,7 +141,7 @@ func (sd *SnapshotBackend) fetchMetadata(ctx context.Context) (*snapshotMetadata
 }
 
 func (sd *SnapshotBackend) readBlock(ctx context.Context, block int64) ([]byte, error) {
-	data, err, _ := sd.blockFetchGroup.Do(string(block), func() (interface{}, error) {
+	data, err, _ := sd.blockFetchGroup.Do(string(rune(block)), func() (interface{}, error) {
 		if v, ok := sd.blockCache.Get(block); ok {
 			return v, nil
 		}
