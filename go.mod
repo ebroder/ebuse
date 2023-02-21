@@ -11,8 +11,7 @@ require (
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/sevlyar/go-daemon v0.1.5 // indirect
 	github.com/traetox/goaio v0.0.0-20171005222435-46641abceb17 // indirect
-	golang.org/x/net v0.0.0-20200930145003-4acb6c075d10 // indirect
-	golang.org/x/sync v0.0.0-20200930132711-30421366ff76
-	golang.org/x/text v0.3.3 // indirect
+	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 )
