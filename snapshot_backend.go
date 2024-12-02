@@ -146,9 +146,15 @@ func (sd *SnapshotBackend) readBlock(ctx context.Context, block int64) ([]byte, 
 			return v, nil
 		}
 
+		// if block is not present in snapshot, return zeros without caching
+		token, exists := sd.blockData.blockTokens[block]
+		if !exists {
+			return make([]byte, sd.metadata.blockSize), nil
+		}
+	
 		out, err := sd.client.GetSnapshotBlockWithContext(ctx, &ebs.GetSnapshotBlockInput{
 			BlockIndex: &block,
-			BlockToken: sd.blockData.blockTokens[block],
+			BlockToken: token,
 			SnapshotId: &sd.snapshot,
 		})
 		if err != nil {
